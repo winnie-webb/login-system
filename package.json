@@ -1,10 +1,10 @@
 {
   "name": "loginsys",
   "version": "1.0.0",
-  "description": "",
+  "description": "A login system that has all the required best practices",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStart": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +12,8 @@
   "dependencies": {
     "ejs": "^3.1.5",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }

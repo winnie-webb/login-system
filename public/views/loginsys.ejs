@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title %></title>
+    <link rel="stylesheet" href="css/loginsys.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form">
+<form action="<%-action %>" method="POST">
+    <span class="form__error-message"></span>
+    <% if (title.includes("Register")){ %>
+    <div class="form__input-section">
+        <label class="form__label-field"  for="name">Fullname</label>
+        <input class="form__input-field" type="text" id="name" required>
+    </div>
+<% } %>
+    <div class="form__input-section">
+    <label class="form__label-field" for="email">Email</label>
+    <input class="form__input-field" type="email" id="email" name="email" required>
+</div>
+
+<div class="form__input-section">
+    <label class="form__label-field"  for="password">Password</label>
+    <input class="form__input-field" min="8" max="30" type="password" id="password" name="password" required>
+</div>
+<div class="form__input-section">
+    <input class="form__submit form__input-field" type="submit" required>
+</div>
+</form>
+<a class="form__link" href="<%- whichPage %>"><%- whichPage %></a>
+    </div>
+</body>
+</html>
