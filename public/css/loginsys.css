@@ -41,9 +41,7 @@ margin: 0.4rem;
     border-radius: 4px;
     width: 70%;
 }
-.form__input-field:placeholder-shown:invalid{
-    border: 2px solid red;
-}
+
 .form__submit{
     background: rgb(91, 108, 182);
     color: #fff;
