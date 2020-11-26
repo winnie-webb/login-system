@@ -1,14 +1,29 @@
+const LocalStrategy = require("passport-local").Strategy;
+
 const User = require("./user");
-async function login(bcrypt,req,res){
-  const isUser = await User.find({email : req.body.email})
+function passportInit(passport,bcrypt){
+  const auth = async (email,password,done) => {
 
-  try{
-      if(!isUser) return res.redirect("/login");
-      const isPasswordMatched = await bcrypt.compare(req.body.password,isUser[0].password);
+    const user = await User.find({email : email});
+    try{
 
-      if(isPasswordMatched) return res.redirect("/")
-      return res.redirect("/login");
+    if(user.length === 0) return done(null,false,{message : "Email and password do not match"});
+    const isPasswordValid = await bcrypt.compare(password,user[0].password);
+
+    if(!isPasswordValid) return done(null,false,{message : "Email and password do not match"});
+    return done(null,user[0]);
+    }
+    catch(error){
+      done(error)
+      console.log(error.message)
+    }
   }
-  catch (error) {console.log(error.message)}
+   passport.use(new LocalStrategy({usernameField : "email"},auth));
+  passport.serializeUser((user,done) => {
+    done(null,user.id)
+  })
+  passport.deserializeUser((id,done) => {
+    done(null, async () => User.findById({_id : id}))
+  })
 }
-module.exports = login;
+module.exports = passportInit;

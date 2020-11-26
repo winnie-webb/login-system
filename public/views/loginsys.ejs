@@ -10,7 +10,9 @@
 <body>
     <div class="form">
 <form action="<%-action %>" method="POST">
-    <span class="form__error-message"></span>
+    <% if (messages.error) { %>
+    <span class="form__error-message"><%= messages.error %></span>
+   <% } %>
     <% if (title.includes("Register")){ %>
     <div class="form__input-section">
         <label class="form__label-field"  for="name">Fullname</label>
